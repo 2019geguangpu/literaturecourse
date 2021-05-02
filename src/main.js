@@ -1,0 +1,29 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import HttpRequest from './util/http';
+import LanJie from './util/axiosinterceptors.js';
+
+Vue.config.productionTip = true;
+
+Vue.use(ElementUI);
+Vue.directive('myfocus', {
+  inserted(el, binding, vnode) {
+    el.querySelector('input').focus();
+  }
+})
+HttpRequest(Vue.prototype);
+
+LanJie();
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
